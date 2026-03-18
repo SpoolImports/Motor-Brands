@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Motor Brands</title>
+  <meta name="description" content="Motor Brands is a specialist automotive performance group operating across engineering, manufacturing, brand development, and distribution." />
+  <meta name="theme-color" content="#0a0a0a" />
+  <style>
+    :root{
+      --bg:#0a0a0a; --panel:#151515; --panel-2:#1b1b1b; --text:#f5f5f5; --muted:#b8b8b8;
+      --accent:#c7322b; --accent-2:#9c201c; --max:1200px; --radius:18px; --shadow:0 14px 40px rgba(0,0,0,.32);
+    }
+    *{box-sizing:border-box} html{scroll-behavior:smooth}
+    body{
+      margin:0; font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+      background:radial-gradient(circle at top left, rgba(199,50,43,.14), transparent 26%), linear-gradient(180deg,#0b0b0b 0%,#0a0a0a 100%);
+      color:var(--text); line-height:1.5;
+    }
+    a{color:inherit;text-decoration:none} .wrap{width:min(calc(100% - 40px), var(--max)); margin:0 auto}
+    .eyebrow{display:inline-flex;align-items:center;gap:10px;color:#d5d5d5;font-size:.9rem;text-transform:uppercase;letter-spacing:.18em}
+    .eyebrow:before{content:"";width:42px;height:2px;background:var(--accent);display:inline-block;border-radius:999px}
+    header{position:sticky;top:0;z-index:20;backdrop-filter:blur(12px);background:rgba(10,10,10,.72);border-bottom:1px solid rgba(255,255,255,.06)}
+    .nav{display:flex;align-items:center;justify-content:space-between;min-height:78px;gap:24px}
+    .brand{font-size:1.8rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;white-space:nowrap}
+    .nav-links{display:flex;align-items:center;gap:24px;color:#e6e6e6;font-size:.98rem}
+    .nav-links a{opacity:.82;transition:.2s ease}.nav-links a:hover{opacity:1;color:#fff}
+    .nav-cta{padding:.8rem 1rem;border:1px solid rgba(255,255,255,.12);border-radius:999px;background:rgba(255,255,255,.03)}
+    .hero{padding:104px 0 72px;position:relative;overflow:hidden}
+    .hero-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:32px;align-items:end}
+    h1{margin:16px 0 20px;font-size:clamp(3.2rem, 7vw, 6.2rem);line-height:.96;letter-spacing:.01em;text-transform:uppercase}
+    .hero p{color:var(--muted);font-size:1.15rem;max-width:760px;margin:0 0 28px}
+    .hero-actions{display:flex;flex-wrap:wrap;gap:14px;margin-top:30px}
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;border-radius:999px;padding:1rem 1.25rem;font-weight:600;transition:.2s ease;border:1px solid transparent}
+    .btn-primary{background:var(--accent);color:white;box-shadow:0 10px 30px rgba(199,50,43,.25)} .btn-primary:hover{background:var(--accent-2)}
+    .btn-secondary{border-color:rgba(255,255,255,.12);background:rgba(255,255,255,.03);color:#fff}
+    .btn-secondary:hover{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.18)}
+    .stat-panel,.company,.contact-card,.note-card{background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));border:1px solid rgba(255,255,255,.08);border-radius:var(--radius);box-shadow:var(--shadow)}
+    .stat-panel{padding:28px}.stat-panel h2{margin:0 0 10px;font-size:1rem;color:#d7d7d7;letter-spacing:.16em;text-transform:uppercase;font-weight:600}
+    .stat-list{display:grid;gap:16px;margin-top:18px}.stat-item{padding:16px 0;border-top:1px solid rgba(255,255,255,.08)}
+    .stat-item strong{display:block;font-size:1.08rem;margin-bottom:4px}.stat-item span{color:var(--muted);display:block;font-size:.98rem}
+    section{padding:72px 0}
+    .section-head{display:grid;grid-template-columns:1fr auto;gap:24px;align-items:end;margin-bottom:28px}
+    .section-head h2{margin:12px 0 0;font-size:clamp(2rem, 4vw, 3rem);line-height:1.02;text-transform:uppercase}
+    .section-head p{max-width:760px;margin:14px 0 0;color:var(--muted);font-size:1.05rem}
+    .overview{border-top:1px solid rgba(255,255,255,.06);border-bottom:1px solid rgba(255,255,255,.06);background:linear-gradient(180deg, rgba(255,255,255,.015), rgba(255,255,255,.025))}
+    .pillars{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:28px}
+    .pillar,.approach{background:var(--panel);border:1px solid rgba(255,255,255,.07);border-radius:var(--radius);padding:22px}
+    .pillar{min-height:190px}
+    .pillar .num{font-size:.86rem;color:var(--accent);letter-spacing:.16em;text-transform:uppercase;font-weight:700;margin-bottom:18px}
+    .pillar h3,.approach h3{margin:0 0 10px;font-size:1.05rem;text-transform:uppercase}
+    .pillar p,.approach p,.company p,.contact-card p,.note-card p{margin:0;color:var(--muted)}
+    .companies-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;margin-top:30px}
+    .company{padding:24px;display:grid;gap:14px;background:linear-gradient(180deg, var(--panel), var(--panel-2))}
+    .company-top{display:flex;align-items:center;justify-content:space-between;gap:14px}
+    .company h3{margin:0;font-size:1.45rem;line-height:1.05;text-transform:uppercase}
+    .badge{padding:.35rem .65rem;border-radius:999px;border:1px solid rgba(255,255,255,.1);color:#ddd;font-size:.78rem;text-transform:uppercase;letter-spacing:.12em;white-space:nowrap;background:rgba(255,255,255,.03)}
+    .meta{display:flex;flex-wrap:wrap;gap:10px;margin-top:4px}.meta span{padding:.4rem .7rem;border-radius:999px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.06);color:#dcdcdc;font-size:.82rem}
+    .approach-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:26px}
+    .contact-box{display:grid;grid-template-columns:1.15fr .85fr;gap:22px;align-items:stretch;margin-top:28px}
+    .contact-card,.note-card{padding:26px;background:linear-gradient(180deg, var(--panel), var(--panel-2))}
+    .contact-card h3,.note-card h3{margin:0 0 10px;font-size:1.3rem;text-transform:uppercase}
+    .email-link{display:inline-flex;padding:.95rem 1.1rem;border-radius:12px;background:#111;border:1px solid rgba(255,255,255,.1);color:white;font-weight:600;word-break:break-word}
+    footer{padding:22px 0 36px;border-top:1px solid rgba(255,255,255,.06);color:#bdbdbd;font-size:.92rem}
+    .footer-row{display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap}.muted{color:var(--muted)}
+    @media (max-width: 980px){.hero-grid,.pillars,.companies-grid,.approach-grid,.contact-box,.section-head{grid-template-columns:1fr}}
+    @media (max-width: 720px){.wrap{width:min(calc(100% - 28px), var(--max))}.nav{min-height:70px}.nav-links{display:none}.hero{padding:78px 0 52px}h1{font-size:clamp(2.5rem, 13vw, 4.1rem)}.brand{font-size:1.35rem}.company-top{align-items:flex-start;flex-direction:column}}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap nav">
+      <a href="#" class="brand" aria-label="Motor Brands home">Motor Brands</a>
+      <nav class="nav-links" aria-label="Primary navigation">
+        <a href="#about">About</a>
+        <a href="#companies">Companies</a>
+        <a href="#approach">What We Do</a>
+        <a href="#contact" class="nav-cta">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="wrap hero-grid">
+        <div>
+          <div class="eyebrow">Automotive performance group</div>
+          <h1>Specialist brands across the performance industry.</h1>
+          <p>Motor Brands is a privately owned group operating across engineering, manufacturing, brand development, and distribution within the automotive performance sector.</p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#companies">View Our Companies</a>
+            <a class="btn btn-secondary" href="#about">About Motor Brands</a>
+          </div>
+        </div>
+
+        <aside class="stat-panel" aria-label="Motor Brands overview">
+          <h2>Group overview</h2>
+          <div class="stat-list">
+            <div class="stat-item"><strong>Engineering & manufacturing</strong><span>Supporting specialist brands with precision product capability.</span></div>
+            <div class="stat-item"><strong>Brand development</strong><span>Growing performance brands with clear market positioning.</span></div>
+            <div class="stat-item"><strong>Distribution</strong><span>Serving enthusiast, workshop, and motorsport markets.</span></div>
+            <div class="stat-item"><strong>Long-term ownership</strong><span>Backing specialist companies with focused strategic support.</span></div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section id="about" class="overview">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <div class="eyebrow">About</div>
+            <h2>A focused group built around specialist automotive companies.</h2>
+            <p>Motor Brands brings together businesses that operate in different parts of the performance automotive supply chain. Some focus on engineering and manufacturing, some on brand development, and others on specialist distribution. What connects them is a shared focus on performance products, industry expertise, and long-term brand stewardship.</p>
+          </div>
+        </div>
+
+        <div class="pillars">
+          <article class="pillar"><div class="num">01</div><h3>Engineering</h3><p>Supporting specialist performance products shaped by technical knowledge, testing, and market understanding.</p></article>
+          <article class="pillar"><div class="num">02</div><h3>Manufacturing</h3><p>Backing precision manufacturing capability where it creates stronger products and better long-term control.</p></article>
+          <article class="pillar"><div class="num">03</div><h3>Brand Development</h3><p>Building clear and durable performance brands with strong positioning inside specialist enthusiast markets.</p></article>
+          <article class="pillar"><div class="num">04</div><h3>Distribution</h3><p>Connecting specialist products to workshops, engine builders, retailers, and performance customers.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="companies">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <div class="eyebrow">Our companies</div>
+            <h2>A portfolio spanning manufacturing, brand ownership, and distribution.</h2>
+            <p>The group includes a mix of specialist businesses with distinct operating models, united by their role in the automotive performance market.</p>
+          </div>
+        </div>
+
+        <div class="companies-grid">
+          <article class="company">
+            <div class="company-top"><h3>Boss Air Suspension</h3><span class="badge">Distribution</span></div>
+            <p>Distributor of Boss Air Suspension systems in Australia, serving customers across the local performance and suspension market.</p>
+            <div class="meta"><span>Australia</span><span>Aftermarket</span><span>Suspension</span></div>
+          </article>
+
+          <article class="company">
+            <div class="company-top"><h3>Spool Imports</h3><span class="badge">Brand + Distribution</span></div>
+            <p>Supplier of specialist performance engine components, combining distribution of leading brands with development and sale of Spool-branded products.</p>
+            <div class="meta"><span>Engine Components</span><span>Distribution</span><span>Brand Ownership</span></div>
+          </article>
+
+          <article class="company">
+            <div class="company-top"><h3>Ross Performance Parts</h3><span class="badge">Engineering + Manufacturing</span></div>
+            <p>Engineering and manufacturing specialist performance parts, with a strong reputation in precision harmonic balancers and related components.</p>
+            <div class="meta"><span>Manufacturing</span><span>Engineering</span><span>Performance Parts</span></div>
+          </article>
+
+          <article class="company">
+            <div class="company-top"><h3>Aviaid</h3><span class="badge">Heritage Brand</span></div>
+            <p>Founded in the United States in 1961, Aviaid is a recognised name in dry sump oiling systems for motorsport and high-performance engines, with manufacturing now based in Australia.</p>
+            <div class="meta"><span>Dry Sump Systems</span><span>Motorsport Heritage</span><span>Australia + USA</span></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="approach" class="overview">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <div class="eyebrow">What we do</div>
+            <h2>Supporting specialist businesses across the performance automotive supply chain.</h2>
+            <p>Motor Brands is structured to support companies at different stages of design, manufacturing, market development, and distribution.</p>
+          </div>
+        </div>
+
+        <div class="approach-grid">
+          <article class="approach"><h3>Strategic ownership</h3><p>Backing specialist companies with long-term focus, operational oversight, and disciplined brand stewardship.</p></article>
+          <article class="approach"><h3>Commercial support</h3><p>Helping businesses strengthen their market position through product, channel, and brand development.</p></article>
+          <article class="approach"><h3>Operational leverage</h3><p>Sharing knowledge across engineering, manufacturing, supply chain, ecommerce, and aftermarket sales.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <div class="eyebrow">Contact</div>
+            <h2>Get in touch.</h2>
+            <p>For group-level enquiries, commercial discussions, or introductions relating to Motor Brands and its companies, contact us directly.</p>
+          </div>
+        </div>
+
+        <div class="contact-box">
+          <div class="contact-card">
+            <h3>General enquiries</h3>
+            <p>Update this email address before deployment if you want enquiries routed elsewhere.</p>
+            <a class="email-link" href="mailto:info@motor-brands.com">info@motor-brands.com</a>
+          </div>
+          <aside class="note-card">
+            <h3>Deployment note</h3>
+            <p>This site is built as a single static HTML file, which makes it ideal for Cloudflare Pages.</p>
+            <p class="muted">You can deploy it exactly as-is, or replace the company cards with linked logos later.</p>
+          </aside>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap footer-row">
+      <div>© <span id="year"></span> Motor Brands. All rights reserved.</div>
+      <div>motor-brands.com</div>
+    </div>
+  </footer>
+
+  <script>document.getElementById("year").textContent = new Date().getFullYear();</script>
+</body>
+</html>
